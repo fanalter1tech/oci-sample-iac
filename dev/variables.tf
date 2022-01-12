@@ -1,25 +1,25 @@
 variable "tenancy_ocid" {
   description = "The OCID of the tenancy."
   type        = string
-  default = "ocid1.tenancy.oc1..aaaaaaaahnckqhwjfwqqbv5lxxcvj74ydps2tok4mboblfenzo7ocvdrtcgq"
+  default     = "ocid1.tenancy.oc1..aaaaaaaahnckqhwjfwqqbv5lxxcvj74ydps2tok4mboblfenzo7ocvdrtcgq"
 }
 
 variable "user_ocid" {
   description = "The user OCID"
   type        = string
-  default = "ocid1.user.oc1..aaaaaaaaiwasp2rrmk2ragekndrgkdh7blrkc7q7vtidrl7qf2ollwzohijq"
+  default     = "ocid1.user.oc1..aaaaaaaaiwasp2rrmk2ragekndrgkdh7blrkc7q7vtidrl7qf2ollwzohijq"
 }
 
 variable "fingerprint" {
   description = ""
   type        = string
-  default = "d7:e1:b3:62:f8:4f:c5:d3:7f:d8:d3:fe:7b:a9:ad:fa"
+  default     = "d7:e1:b3:62:f8:4f:c5:d3:7f:d8:d3:fe:7b:a9:ad:fa"
 }
 
 variable "private_key_path" {
   description = "Path to the rsa private key"
   type        = string
-  default  = "~/.oci/oci_rsa.pem"
+  default     = "~/.oci/oci_rsa.pem"
 }
 
 variable "region" {
@@ -72,10 +72,44 @@ variable "groups" {
       user_ids     = []
       defined_tags = null
     },
-    auditor-group =  {
+    auditor-group = {
       description  = "Landing Zone group for auditing the tenancy."
       user_ids     = []
       defined_tags = null
     }
   }
+}
+
+variable "default_tags" {
+  description = "tags to attach to all resources"
+  default = {
+    Tool        = "terraform"
+    User        = "Tobi.Ogebule"
+    Environment = "dev"
+  }
+}
+
+# network
+variable "vcn_cidr" {
+  type        = string
+  description = "dev environment CIDR block"
+  default     = "10.0.0.0/16"
+}
+
+variable "web_subnet_cidr" {
+  type        = string
+  description = "dev environment subnet CIDR block"
+  default     = "10.0.0.0/24"
+}
+
+variable "app_subnet_cidr" {
+  type        = string
+  description = "dev environment subnet CIDR block"
+  default     = "10.0.1.0/24"
+}
+
+variable "db_subnet_cidr" {
+  type        = string
+  description = "dev environment subnet CIDR block"
+  default     = "10.0.2.0/24"
 }
