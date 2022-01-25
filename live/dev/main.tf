@@ -1,14 +1,14 @@
 provider "oci" {
-  tenancy_ocid     = module["global-variables"].tenancy_ocid
-  user_ocid        = module["global-variables"].user_ocid
-  fingerprint      = module["global-variables"].fingerprint
-  private_key_path = module["global-variables"].private_key_path
-  region           = module["global-variables"].region
+  tenancy_ocid     = var.tenancy_ocid
+  user_ocid        = var.user_ocid
+  fingerprint      = var.fingerprint
+  private_key_path = var.private_key_path
+  region           = var.region
 }
 
 module "networking" {
   source = "../../modules/networking"
-  tenancy_ocid   = module["global-variables"].tenancy_ocid
+  tenancy_ocid   = var.tenancy_ocid
   vcn_cidr       = "10.0.0.0/16"
   display_name   = "networking"
   environment    = var.environment
